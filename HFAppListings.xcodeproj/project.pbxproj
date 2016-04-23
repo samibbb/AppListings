@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		365CD8D51CC9CF1B009B6271 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD8D41CC9CF1B009B6271 /* main.m */; };
 		365CD8D81CC9CF1C009B6271 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD8D71CC9CF1C009B6271 /* AppDelegate.m */; };
-		365CD8DB1CC9CF1C009B6271 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD8DA1CC9CF1C009B6271 /* ViewController.m */; };
+		365CD8DB1CC9CF1C009B6271 /* HFTopListingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD8DA1CC9CF1C009B6271 /* HFTopListingsViewController.m */; };
 		365CD8DE1CC9CF1C009B6271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365CD8DC1CC9CF1C009B6271 /* Main.storyboard */; };
 		365CD8E01CC9CF1C009B6271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 365CD8DF1CC9CF1C009B6271 /* Assets.xcassets */; };
 		365CD8E31CC9CF1C009B6271 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365CD8E11CC9CF1C009B6271 /* LaunchScreen.storyboard */; };
@@ -20,6 +20,12 @@
 		365CD9151CCBDE8C009B6271 /* HFListingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD9131CCBDE8C009B6271 /* HFListingCell.m */; };
 		365CD9161CCBDE8C009B6271 /* HFListingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365CD9141CCBDE8C009B6271 /* HFListingCell.xib */; };
 		365CD91A1CCBF145009B6271 /* NSString+Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD9191CCBF145009B6271 /* NSString+Currency.m */; };
+		365CD91C1CCC19A1009B6271 /* favicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 365CD91B1CCC19A1009B6271 /* favicon.png */; };
+		365CD91D1CCC19A1009B6271 /* favicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 365CD91B1CCC19A1009B6271 /* favicon.png */; };
+		365CD91E1CCC19A1009B6271 /* favicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 365CD91B1CCC19A1009B6271 /* favicon.png */; };
+		365CD9211CCC1BFF009B6271 /* HFListingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD9201CCC1BFF009B6271 /* HFListingDetailViewController.m */; };
+		365CD9221CCC1BFF009B6271 /* HFListingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD9201CCC1BFF009B6271 /* HFListingDetailViewController.m */; };
+		365CD9231CCC1BFF009B6271 /* HFListingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD9201CCC1BFF009B6271 /* HFListingDetailViewController.m */; };
 		7F014BF21B10D2C3043D1D48 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 188A9A7B162090290B63FF56 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -47,8 +53,8 @@
 		365CD8D41CC9CF1B009B6271 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		365CD8D61CC9CF1B009B6271 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		365CD8D71CC9CF1C009B6271 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		365CD8D91CC9CF1C009B6271 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		365CD8DA1CC9CF1C009B6271 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		365CD8D91CC9CF1C009B6271 /* HFTopListingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HFTopListingsViewController.h; sourceTree = "<group>"; };
+		365CD8DA1CC9CF1C009B6271 /* HFTopListingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HFTopListingsViewController.m; sourceTree = "<group>"; };
 		365CD8DD1CC9CF1C009B6271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		365CD8DF1CC9CF1C009B6271 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		365CD8E21CC9CF1C009B6271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,6 +74,9 @@
 		365CD9141CCBDE8C009B6271 /* HFListingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HFListingCell.xib; sourceTree = "<group>"; };
 		365CD9181CCBF145009B6271 /* NSString+Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Currency.h"; sourceTree = "<group>"; };
 		365CD9191CCBF145009B6271 /* NSString+Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Currency.m"; sourceTree = "<group>"; };
+		365CD91B1CCC19A1009B6271 /* favicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favicon.png; sourceTree = "<group>"; };
+		365CD91F1CCC1BFF009B6271 /* HFListingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFListingDetailViewController.h; sourceTree = "<group>"; };
+		365CD9201CCC1BFF009B6271 /* HFListingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFListingDetailViewController.m; sourceTree = "<group>"; };
 		FF6F10D1F2990C657D194FB4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,22 +131,25 @@
 		365CD8D21CC9CF1B009B6271 /* HFAppListings */ = {
 			isa = PBXGroup;
 			children = (
-				365CD9171CCBF125009B6271 /* Categories */,
 				365CD8D61CC9CF1B009B6271 /* AppDelegate.h */,
 				365CD8D71CC9CF1C009B6271 /* AppDelegate.m */,
 				365CD8DF1CC9CF1C009B6271 /* Assets.xcassets */,
+				365CD9171CCBF125009B6271 /* Categories */,
 				365CD90C1CCBBDEB009B6271 /* Data model */,
+				365CD91B1CCC19A1009B6271 /* favicon.png */,
 				365CD9121CCBDE8C009B6271 /* HFListingCell.h */,
 				365CD9131CCBDE8C009B6271 /* HFListingCell.m */,
 				365CD9141CCBDE8C009B6271 /* HFListingCell.xib */,
 				365CD9061CC9D1E4009B6271 /* HFListingsManager.h */,
 				365CD9071CC9D1E4009B6271 /* HFListingsManager.m */,
+				365CD8D91CC9CF1C009B6271 /* HFTopListingsViewController.h */,
+				365CD8DA1CC9CF1C009B6271 /* HFTopListingsViewController.m */,
 				365CD8E41CC9CF1C009B6271 /* Info.plist */,
 				365CD8E11CC9CF1C009B6271 /* LaunchScreen.storyboard */,
 				365CD8DC1CC9CF1C009B6271 /* Main.storyboard */,
 				365CD8D31CC9CF1B009B6271 /* Supporting Files */,
-				365CD8D91CC9CF1C009B6271 /* ViewController.h */,
-				365CD8DA1CC9CF1C009B6271 /* ViewController.m */,
+				365CD91F1CCC1BFF009B6271 /* HFListingDetailViewController.h */,
+				365CD9201CCC1BFF009B6271 /* HFListingDetailViewController.m */,
 			);
 			path = HFAppListings;
 			sourceTree = "<group>";
@@ -311,6 +323,7 @@
 			files = (
 				365CD8E31CC9CF1C009B6271 /* LaunchScreen.storyboard in Resources */,
 				365CD8E01CC9CF1C009B6271 /* Assets.xcassets in Resources */,
+				365CD91C1CCC19A1009B6271 /* favicon.png in Resources */,
 				365CD9161CCBDE8C009B6271 /* HFListingCell.xib in Resources */,
 				365CD8DE1CC9CF1C009B6271 /* Main.storyboard in Resources */,
 			);
@@ -320,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365CD91D1CCC19A1009B6271 /* favicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365CD91E1CCC19A1009B6271 /* favicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,9 +401,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				365CD9081CC9D1E4009B6271 /* HFListingsManager.m in Sources */,
-				365CD8DB1CC9CF1C009B6271 /* ViewController.m in Sources */,
+				365CD8DB1CC9CF1C009B6271 /* HFTopListingsViewController.m in Sources */,
 				365CD91A1CCBF145009B6271 /* NSString+Currency.m in Sources */,
 				365CD90B1CC9E8C4009B6271 /* HFListing.m in Sources */,
+				365CD9211CCC1BFF009B6271 /* HFListingDetailViewController.m in Sources */,
 				365CD8D81CC9CF1C009B6271 /* AppDelegate.m in Sources */,
 				365CD9151CCBDE8C009B6271 /* HFListingCell.m in Sources */,
 				365CD8D51CC9CF1B009B6271 /* main.m in Sources */,
@@ -399,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365CD9221CCC1BFF009B6271 /* HFListingDetailViewController.m in Sources */,
 				365CD8EE1CC9CF1C009B6271 /* HFAppListingsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365CD9231CCC1BFF009B6271 /* HFListingDetailViewController.m in Sources */,
 				365CD8F91CC9CF1C009B6271 /* HFAppListingsUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

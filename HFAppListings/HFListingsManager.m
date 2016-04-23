@@ -46,7 +46,6 @@ static NSString * const kTopListingsEndpoint = @"us/rss/topgrossingapplications/
                      success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {
         
         if ([responseObject isKindOfClass:NSDictionary.class]){
-            
             NSArray * listingsInfo = responseObject[@"feed"][@"entry"];
             
             NSError * jsonError;
@@ -55,9 +54,7 @@ static NSString * const kTopListingsEndpoint = @"us/rss/topgrossingapplications/
             if (completion){
                 completion(listings);
             }
-            
         }
-
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

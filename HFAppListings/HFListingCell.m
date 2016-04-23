@@ -9,7 +9,6 @@
 #import "HFListingCell.h"
 #import "HFListing.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "NSString+Currency.h"
 
 @interface HFListingCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *appImageView;
@@ -28,13 +27,14 @@
     [self.appImageView sd_setImageWithURL:listing.thumbnailUrl];
     
     self.appTitleLabel.text = listing.appTitle;
+    
     self.shortSummaryLabel.text = listing.shortSummary;
     
     self.appCategoryLabel.text = listing.category;
     
     self.appPublisherLabel.text = listing.publisherName;
     
-    self.appPriceLabel.text = listing.price.doubleValue > 0.0 ? listing.price.dollarAmount : NSLocalizedString(@"FREE", @"Free label");
+    self.appPriceLabel.text = listing.displayPrice;
     
 }
 

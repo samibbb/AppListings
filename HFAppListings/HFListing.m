@@ -7,6 +7,7 @@
 //
 
 #import "HFListing.h"
+#import "NSString+Currency.h"
 
 typedef enum {
     HPAppIconIndex_Thumbnail = 1,
@@ -28,6 +29,13 @@ typedef enum {
                                                        @"im:releaseDate.attributes.label":@"releaseDate"}];
 }
 
+- (NSString *)displayPrice {
+    
+    NSString * sanitizedPrice = self.price.doubleValue > 0.0 ? self.price.dollarAmount : NSLocalizedString(@"FREE", @"Free label");
+    return sanitizedPrice;
+    
+}
+
 - (NSString *)shortSummary {
     return [self.summary componentsSeparatedByString:@"\n"].firstObject;
 }
@@ -41,7 +49,6 @@ typedef enum {
 }
 
 @end
-
 
 @implementation HFListingImage
 

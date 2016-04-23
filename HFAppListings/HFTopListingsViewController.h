@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  HFTopListingsViewController.h
 //  HFAppListings
 //
 //  Created by Sami B on 2016-04-21.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface HFTopListingsViewController : UIViewController
 
 
 @end
