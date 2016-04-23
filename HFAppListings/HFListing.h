@@ -29,5 +29,6 @@
 
 @property (nonatomic,readonly) NSURL * thumbnailUrl;
 @property (nonatomic,readonly) NSURL * largeImageUrl;
+@property (nonatomic,readonly) NSString * shortSummary;
 
 @end

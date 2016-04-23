@@ -9,33 +9,36 @@
 #import "HFListingCell.h"
 #import "HFListing.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "NSString+Currency.h"
 
 @interface HFListingCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *appImageView;
 @property (weak, nonatomic) IBOutlet UILabel *appTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *appCategoryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *appPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *appPublisherLabel;
+@property (weak, nonatomic) IBOutlet UILabel *shortSummaryLabel;
 @end
 
 @implementation HFListingCell
 
 - (void)setListing:(HFListing *)listing {
     _listing = listing;
+    
     [self.appImageView sd_setImageWithURL:listing.thumbnailUrl];
+    
     self.appTitleLabel.text = listing.appTitle;
+    self.shortSummaryLabel.text = listing.shortSummary;
+    
     self.appCategoryLabel.text = listing.category;
-    self.appPriceLabel.text = listing.price;
+    
+    self.appPublisherLabel.text = listing.publisherName;
+    
+    self.appPriceLabel.text = listing.price.doubleValue > 0.0 ? listing.price.dollarAmount : NSLocalizedString(@"FREE", @"Free label");
+    
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 @end

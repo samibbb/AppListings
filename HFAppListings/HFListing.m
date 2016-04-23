@@ -28,6 +28,9 @@ typedef enum {
                                                        @"im:releaseDate.attributes.label":@"releaseDate"}];
 }
 
+- (NSString *)shortSummary {
+    return [self.summary componentsSeparatedByString:@"\n"].firstObject;
+}
 
 - (NSURL *)thumbnailUrl {
     return [NSURL URLWithString:[self.appIconSet[HPAppIconIndex_Thumbnail] imageUrl]];

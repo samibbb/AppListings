@@ -24,10 +24,11 @@ static NSString * HFListingCellId = @"HFListingCellId";
     
     __weak typeof(self) weakSelf = self;
     
+    self.tableView.estimatedRowHeight = 104.0f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 89.0f;
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(HFListingCell.class)
-                                               bundle:nil] forCellReuseIdentifier:HFListingCellId];
+    
+    UINib * listingCellNib = [UINib nibWithNibName:NSStringFromClass(HFListingCell.class) bundle:nil];
+    [self.tableView registerNib:listingCellNib forCellReuseIdentifier:HFListingCellId];
     
     [[HFListingsManager sharedManager] fetchTopListingsWithCompletion:^(NSArray<HFListing *> * _Nullable retrievedListings) {
         weakSelf.topListings = retrievedListings;

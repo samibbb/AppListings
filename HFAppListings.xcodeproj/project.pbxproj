@@ -19,6 +19,7 @@
 		365CD90B1CC9E8C4009B6271 /* HFListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD90A1CC9E8C4009B6271 /* HFListing.m */; };
 		365CD9151CCBDE8C009B6271 /* HFListingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD9131CCBDE8C009B6271 /* HFListingCell.m */; };
 		365CD9161CCBDE8C009B6271 /* HFListingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365CD9141CCBDE8C009B6271 /* HFListingCell.xib */; };
+		365CD91A1CCBF145009B6271 /* NSString+Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 365CD9191CCBF145009B6271 /* NSString+Currency.m */; };
 		7F014BF21B10D2C3043D1D48 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 188A9A7B162090290B63FF56 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		365CD9121CCBDE8C009B6271 /* HFListingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFListingCell.h; sourceTree = "<group>"; };
 		365CD9131CCBDE8C009B6271 /* HFListingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFListingCell.m; sourceTree = "<group>"; };
 		365CD9141CCBDE8C009B6271 /* HFListingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HFListingCell.xib; sourceTree = "<group>"; };
+		365CD9181CCBF145009B6271 /* NSString+Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Currency.h"; sourceTree = "<group>"; };
+		365CD9191CCBF145009B6271 /* NSString+Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Currency.m"; sourceTree = "<group>"; };
 		FF6F10D1F2990C657D194FB4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +122,7 @@
 		365CD8D21CC9CF1B009B6271 /* HFAppListings */ = {
 			isa = PBXGroup;
 			children = (
+				365CD9171CCBF125009B6271 /* Categories */,
 				365CD8D61CC9CF1B009B6271 /* AppDelegate.h */,
 				365CD8D71CC9CF1C009B6271 /* AppDelegate.m */,
 				365CD8DF1CC9CF1C009B6271 /* Assets.xcassets */,
@@ -171,6 +175,15 @@
 				365CD90A1CC9E8C4009B6271 /* HFListing.m */,
 			);
 			name = "Data model";
+			sourceTree = "<group>";
+		};
+		365CD9171CCBF125009B6271 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				365CD9181CCBF145009B6271 /* NSString+Currency.h */,
+				365CD9191CCBF145009B6271 /* NSString+Currency.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		7DFF5D566BA437176E921C46 /* Pods */ = {
@@ -374,6 +387,7 @@
 			files = (
 				365CD9081CC9D1E4009B6271 /* HFListingsManager.m in Sources */,
 				365CD8DB1CC9CF1C009B6271 /* ViewController.m in Sources */,
+				365CD91A1CCBF145009B6271 /* NSString+Currency.m in Sources */,
 				365CD90B1CC9E8C4009B6271 /* HFListing.m in Sources */,
 				365CD8D81CC9CF1C009B6271 /* AppDelegate.m in Sources */,
 				365CD9151CCBDE8C009B6271 /* HFListingCell.m in Sources */,
