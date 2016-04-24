@@ -9,8 +9,9 @@
 #import "HFListingsManager.h"
 #import "HFListing.h"
 
-static NSString * const kBaseUrl = @"https://itunes.apple.com/";
+static NSString * const kBaseUrlString = @"https://itunes.apple.com/";
 static NSString * const kTopListingsEndpoint = @"us/rss/topgrossingapplications/limit=50/json";
+static NSString * const kPersistedFavoritesKey = @"us/rss/topgrossingapplications/limit=50/json";
 
 @interface HFListingsManager ()
 @property (strong,nonatomic) AFHTTPSessionManager * sessionManager;
@@ -32,7 +33,9 @@ static NSString * const kTopListingsEndpoint = @"us/rss/topgrossingapplications/
 - (instancetype)init {
     
     if (self = [super init]){
-        _sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:[NSURL URLWithString:kBaseUrl]];
+        
+        NSURL * baseUrl = [NSURL URLWithString:kBaseUrlString];
+        _sessionManager = [[AFHTTPSessionManager alloc]initWithBaseURL:baseUrl];
         _sessionManager.responseSerializer = [AFJSONResponseSerializer new];
         
     }
@@ -40,26 +43,97 @@ static NSString * const kTopListingsEndpoint = @"us/rss/topgrossingapplications/
     return self;
 }
 
+- (NSArray<HFListing *> *)favorites {
+    
+    NSData * persistedFavoritesData = [[NSUserDefaults standardUserDefaults] dataForKey:kPersistedFavoritesKey];
+    if (persistedFavoritesData){
+        return [NSKeyedUnarchiver unarchiveObjectWithData:persistedFavoritesData];
+    }
+    
+    return @[];
+    
+}
+
+- (BOOL) removeFromFavorites:(HFListing*)listing {
+    
+    NSArray<HFListing*> * currentFavorites = self.favorites;
+    
+    if (![currentFavorites containsObject:listing]){
+        return NO;
+    }
+    
+    // Remove
+    NSPredicate * removedFavPredicate = [NSPredicate predicateWithBlock:^BOOL(HFListing *  _Nonnull favorite, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return ![listing isEqual:favorite];
+    }];
+    NSArray<HFListing*> * newFavs = [currentFavorites filteredArrayUsingPredicate:removedFavPredicate];
+    NSData * newFavsData = [NSKeyedArchiver archivedDataWithRootObject:newFavs];
+    
+    // Write
+    if (newFavsData){
+        [[NSUserDefaults standardUserDefaults] setObject:newFavsData forKey:kPersistedFavoritesKey];
+        BOOL removalSuccess = [[NSUserDefaults standardUserDefaults] synchronize];
+        return removalSuccess;
+    }
+    
+    return NO;
+}
+
+- (BOOL) addToFavorites:(HFListing*)newFavorite {
+    
+    NSArray<HFListing*> * currentFavorites = self.favorites;
+    
+    if ([currentFavorites containsObject:newFavorite]){
+        return NO;
+    }
+    
+    NSData * newFavsData = [NSKeyedArchiver archivedDataWithRootObject:[currentFavorites arrayByAddingObject:newFavorite]];
+    
+    if (newFavsData){
+        [[NSUserDefaults standardUserDefaults] setObject:newFavsData forKey:kPersistedFavoritesKey];
+        BOOL writeSuccess = [[NSUserDefaults standardUserDefaults] synchronize];
+        return writeSuccess;
+    }
+    
+    return NO;
+}
+
 - (void) fetchTopListingsWithCompletion:(HFListingRequestCompletion)completion {
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     [self.sessionManager GET:kTopListingsEndpoint parameters:nil progress:nil
                      success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {
         
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                         
         if ([responseObject isKindOfClass:NSDictionary.class]){
             NSArray * listingsInfo = responseObject[@"feed"][@"entry"];
             
             NSError * jsonError;
             NSArray<HFListing*> *listings = [HFListing arrayOfModelsFromDictionaries:listingsInfo error:&jsonError];
             
-            if (completion){
+            if (completion && !jsonError){
                 completion(listings);
+            } else {
+                [HFListingsManager handleFailure:jsonError];
             }
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [HFListingsManager handleFailure:error];
+    
     }];
     
+}
+
++ (void) handleFailure:(NSError*)error {
+    NSLog(@"Error : %@", error.userInfo);
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

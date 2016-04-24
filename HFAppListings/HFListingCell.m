@@ -16,12 +16,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *appCategoryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *appPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *appPublisherLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *favoritedIcon;
 @property (weak, nonatomic) IBOutlet UILabel *shortSummaryLabel;
 @end
 
 @implementation HFListingCell
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    self.appTitleLabel.text = self.shortSummaryLabel.text = self.appCategoryLabel.text = self.appPublisherLabel.text = self.appPriceLabel.text = self.shortSummaryLabel.text = self.rankingLabel.text = @"";
+    self.appImageView.image = nil;
+    self.favoritedIcon.hidden = YES;
+    
+}
+
 - (void)setListing:(HFListing *)listing {
+    
     _listing = listing;
     
     [self.appImageView sd_setImageWithURL:listing.thumbnailUrl];
@@ -36,9 +46,8 @@
     
     self.appPriceLabel.text = listing.displayPrice;
     
+    self.favoritedIcon.hidden = !listing.isFavorited;
+    
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
 @end

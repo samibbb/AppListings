@@ -8,6 +8,7 @@
 
 #import "HFListing.h"
 #import "NSString+Currency.h"
+#import "HFListingsManager.h"
 
 typedef enum {
     HPAppIconIndex_Thumbnail = 1,
@@ -16,9 +17,44 @@ typedef enum {
 
 @implementation HFListing
 
-+(JSONKeyMapper*)keyMapper{
+- (NSString *)displayPrice {
     
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"im:name.label": @"appTitle",
+    NSString * sanitizedPrice = self.price.doubleValue > 0.0 ? self.price.dollarAmount : NSLocalizedString(@"FREE >", @"Free label");
+    return sanitizedPrice;
+    
+}
+
+- (NSString *)activityDescription {
+    return [NSString stringWithFormat:@"%@ by %@ \n %@", self.appTitle, self.publisherName, self.appUrl];
+}
+
+- (BOOL) isFavorited {
+    return [[HFListingsManager sharedManager].favorites containsObject:self];
+}
+
+- (NSString *)shortSummary {
+    
+    // Return text up to to first line break, or first sentence - whichever is shorter
+    NSString *upToFirstLineBreak = [[self.summary componentsSeparatedByString:@"\n"].firstObject stringByAppendingString:@"."];
+    NSString *firstSentence = @"";
+    NSScanner *scanner = [NSScanner scannerWithString:self.summary];
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@".!"];
+    [scanner scanUpToCharactersFromSet:set intoString:&firstSentence];
+    
+    return upToFirstLineBreak.length > firstSentence.length ? [firstSentence stringByAppendingString:@"."] : upToFirstLineBreak;
+}
+
+- (NSURL *)thumbnailUrl {
+    return [NSURL URLWithString:[self.appIconSet[HPAppIconIndex_Thumbnail] imageUrl]];
+}
+
+- (NSURL *)largeImageUrl {
+    return [NSURL URLWithString:[self.appIconSet[HPAppIconIndex_Large] imageUrl]];
+}
+
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id.attributes.im:id":@"appIdentifier",
+                                                       @"im:name.label": @"appTitle",
                                                        @"im:image":@"appIconSet",
                                                        @"category.attributes.label":@"category",
                                                        @"summary.label": @"summary",
@@ -29,23 +65,9 @@ typedef enum {
                                                        @"im:releaseDate.attributes.label":@"releaseDate"}];
 }
 
-- (NSString *)displayPrice {
-    
-    NSString * sanitizedPrice = self.price.doubleValue > 0.0 ? self.price.dollarAmount : NSLocalizedString(@"FREE", @"Free label");
-    return sanitizedPrice;
-    
-}
-
-- (NSString *)shortSummary {
-    return [self.summary componentsSeparatedByString:@"\n"].firstObject;
-}
-
-- (NSURL *)thumbnailUrl {
-    return [NSURL URLWithString:[self.appIconSet[HPAppIconIndex_Thumbnail] imageUrl]];
-}
-
-- (NSURL *)largeImageUrl {
-    return [NSURL URLWithString:[self.appIconSet[HPAppIconIndex_Large] imageUrl]];
+- (BOOL)isEqual:(HFListing*)listing {
+    if (![listing isKindOfClass:self.class]) return NO;
+    return [self.appIdentifier isEqualToString:listing.appIdentifier];
 }
 
 @end

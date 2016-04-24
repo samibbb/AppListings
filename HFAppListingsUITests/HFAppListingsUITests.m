@@ -17,14 +17,10 @@
 - (void)setUp {
     [super setUp];
     
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    
-    // In UI tests it is usually best to stop immediately when a failure occurs.
     self.continueAfterFailure = NO;
-    // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
+
     [[[XCUIApplication alloc] init] launch];
-    
-    // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+
 }
 
 - (void)tearDown {
@@ -32,9 +28,74 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // Use recording to get started writing UI tests.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testSharing {
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElementQuery *tablesQuery = app.tables;
+    [[tablesQuery.cells containingType:XCUIElementTypeStaticText identifier:@"1"].staticTexts[@"FREE >"] tap];
+    [app.buttons[@"shareicon"] tap];
+    
+    XCUIApplication *app2 = app;
+    [[app2.sheets.collectionViews.cells.collectionViews containingType:XCUIElementTypeButton identifier:@"Copy"].buttons[@"More"] tap];
+    [tablesQuery.staticTexts[@"Copy"] tap];
+    [app.navigationBars[@"Activities"].buttons[@"Done"] tap];
+    [app2.sheets.collectionViews.collectionViews.buttons[@"Copy"] tap];
+    [app.navigationBars[@"Spotify Music"].buttons[@"Top Apps"] tap];
+    
+}
+
+- (void) testOpeningAppStore {
+    
+    if (TARGET_OS_SIMULATOR) return;
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [[app.tables.cells containingType:XCUIElementTypeStaticText identifier:@"4"].staticTexts[@"FREE >"] tap];
+    [[[[[[app.otherElements containingType:XCUIElementTypeNavigationBar identifier:@"Mobile Strike"] childrenMatchingType:XCUIElementTypeOther].element childrenMatchingType:XCUIElementTypeOther].element childrenMatchingType:XCUIElementTypeOther].element childrenMatchingType:XCUIElementTypeImage].element tap];
+    
+}
+
+- (void)testAddingToFavorites {
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    
+    // Tap first listing
+    XCUIElement * firstListing = [app.tables.cells containingType:XCUIElementTypeStaticText identifier:@"1"].staticTexts[@"FREE >"];
+    [firstListing tap];
+    
+    // Toggle favorite
+    [self.favoriteButton tap];
+    
+    // Navigate back
+
+    XCUIElement * backButton = app.navigationBars[@"Spotify Music"].buttons[@"Top Apps"];
+    if (backButton.exists)[backButton tap];
+    
+    // Check if listing appears in Favorites
+    XCUIElement *favoritesNavButton = app.navigationBars[@"Top Apps"].buttons[@"Favorites"];
+    [favoritesNavButton tap];
+    
+    // Back to top apps
+    XCUIElement *topAppsButton = app.navigationBars[@"Favorites"].buttons[@"Top Apps"];
+    [topAppsButton tap];
+    
+    // Go back to listing
+    [firstListing tap];
+    
+    [self.favoriteButton tap];
+    
+    if (backButton.exists)[backButton tap];
+    if (favoritesNavButton.exists)[favoritesNavButton tap];
+    if (firstListing.exists)[firstListing tap];
+    [self.favoriteButton tap];
+    if (backButton.exists)[backButton tap];
+    
+    if (topAppsButton.exists)[topAppsButton tap];
+    
+}
+
+- (XCUIElement*) favoriteButton {
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    return app.buttons[@"favicon"].exists ? app.buttons[@"favicon"] : app.buttons[@"favorited"];
 }
 
 @end

@@ -12,4 +12,5 @@
 
 @interface HFListingCell : UITableViewCell
 @property (nonatomic,strong) HFListing * listing;
+@property (weak, nonatomic) IBOutlet UILabel *rankingLabel;
 @end
