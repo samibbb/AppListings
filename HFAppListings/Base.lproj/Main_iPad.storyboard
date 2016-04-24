@@ -198,6 +198,7 @@
                     <navigationItem key="navigationItem" id="tgb-kY-fMr">
                         <barButtonItem key="backBarButtonItem" title="Back" id="eAP-ho-1G7"/>
                     </navigationItem>
+                    <simulatedScreenMetrics key="destination"/>
                     <connections>
                         <outlet property="appImageView" destination="K17-ZF-dRa" id="0XB-sh-33X"/>
                         <outlet property="appPriceLabel" destination="mlw-vT-gsR" id="Vy8-sg-hut"/>
