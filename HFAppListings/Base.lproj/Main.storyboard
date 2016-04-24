@@ -165,7 +165,7 @@
                                     <action selector="favoriteButtonPressed:" destination="Ghi-ID-nEE" eventType="touchUpInside" id="1jQ-qn-aLC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edR-Xj-NW4" userLabel="Favorite Button">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edR-Xj-NW4" userLabel="Share Button">
                                 <rect key="frame" x="336" y="617" width="28" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="28" id="5ZM-17-AaD"/>
@@ -173,7 +173,6 @@
                                 </constraints>
                                 <state key="normal" image="shareicon.png"/>
                                 <connections>
-                                    <action selector="favoriteButtonPressed:" destination="Ghi-ID-nEE" eventType="touchUpInside" id="nUI-vp-ePH"/>
                                     <action selector="shareButtonPressed:" destination="Ghi-ID-nEE" eventType="touchUpInside" id="HKA-IF-y4l"/>
                                 </connections>
                             </button>
