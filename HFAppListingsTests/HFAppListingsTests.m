@@ -35,13 +35,9 @@
             
             if (appListing.isFavorited){
                 removalSuccess = [[HFListingsManager sharedManager] removeFromFavorites:appListing];
-                *stop = YES;
                 XCTAssertTrue(removalSuccess);
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    XCTAssertFalse(appListing.isFavorited);
-                });
-                
+                XCTAssertFalse(appListing.isFavorited);
+                *stop = YES;
             }
             
         }];
@@ -50,7 +46,11 @@
     }];
     
     [self waitForExpectationsWithTimeout:5.0f handler:^(NSError * _Nullable error) {
-        NSLog(@"Error removing from favorites : %@", error.localizedDescription);
+        
+        if (error){
+            NSLog(@"Error removing from favorites : %@", error.localizedDescription);
+        }
+        
     }];
 }
 
@@ -63,13 +63,9 @@
             
             if (!appListing.isFavorited){
                 BOOL addSuccess = [[HFListingsManager sharedManager] addToFavorites:appListing];
-                *stop = YES;
                 XCTAssertTrue(addSuccess);
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    XCTAssertTrue(appListing.isFavorited);
-                });
-                
+                XCTAssertTrue(appListing.isFavorited);
+                *stop = YES;
             }
             
         }];
@@ -83,7 +79,7 @@
 }
 
 - (void)testListingRequest {
-    XCTestExpectation * topListingsPromise = [self expectationWithDescription:@"TopListingsExpectation"];
+    XCTestExpectation * topListingsPromise = [self expectationWithDescription:@"TopListingsPromise"];
     
     NSUInteger expectedCount = 50;
     
@@ -108,9 +104,9 @@
     }];
     
     [self waitForExpectationsWithTimeout:5.0f handler:^(NSError * _Nullable error) {
-       
-        NSLog(@"Error retrieving top listings : %@", error.localizedDescription);
-        
+        if (error){
+            NSLog(@"Error retrieving top listings : %@", error.localizedDescription);
+        }
     }];
 }
 

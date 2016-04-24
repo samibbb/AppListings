@@ -11,7 +11,7 @@
 
 static NSString * const kBaseUrlString = @"https://itunes.apple.com/";
 static NSString * const kTopListingsEndpoint = @"us/rss/topgrossingapplications/limit=50/json";
-static NSString * const kPersistedFavoritesKey = @"us/rss/topgrossingapplications/limit=50/json";
+static NSString * const kPersistedFavoritesKey = @"kFavoritesDataKey";
 
 @interface HFListingsManager ()
 @property (strong,nonatomic) AFHTTPSessionManager * sessionManager;
@@ -43,7 +43,7 @@ static NSString * const kPersistedFavoritesKey = @"us/rss/topgrossingapplication
     return self;
 }
 
-- (NSArray<HFListing *> *)favorites {
+- (NSArray<HFListing *> * _Nonnull) favorites {
     
     NSData * persistedFavoritesData = [[NSUserDefaults standardUserDefaults] dataForKey:kPersistedFavoritesKey];
     if (persistedFavoritesData){
@@ -69,7 +69,7 @@ static NSString * const kPersistedFavoritesKey = @"us/rss/topgrossingapplication
     NSArray<HFListing*> * newFavs = [currentFavorites filteredArrayUsingPredicate:removedFavPredicate];
     NSData * newFavsData = [NSKeyedArchiver archivedDataWithRootObject:newFavs];
     
-    // Write
+    // Write to disk
     if (newFavsData){
         [[NSUserDefaults standardUserDefaults] setObject:newFavsData forKey:kPersistedFavoritesKey];
         BOOL removalSuccess = [[NSUserDefaults standardUserDefaults] synchronize];

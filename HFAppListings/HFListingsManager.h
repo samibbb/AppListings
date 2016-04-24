@@ -14,13 +14,17 @@ typedef void (^HFListingRequestCompletion)(NSArray<HFListing*> * _Nullable retri
 
 @interface HFListingsManager : NSObject
 
-+ (instancetype __nonnull)sharedManager;
-+ (void) handleFailure:(NSError* _Nullable)error;
-
+/*!
+ * @brief Persited app listings favorited by the user
+ * @return An array of @p HFListing objects
+ */
 @property (readonly) NSArray<HFListing*> * _Nonnull  favorites;
+
++ (instancetype __nonnull)sharedManager;
+
++ (void) handleFailure:(NSError* _Nullable)error;
 
 - (BOOL) addToFavorites:(HFListing* _Nonnull)newFavorite;
 - (BOOL) removeFromFavorites:(HFListing* _Nonnull)listing;
-
 - (void) fetchTopListingsWithCompletion:(HFListingRequestCompletion _Nullable)completion;
 @end

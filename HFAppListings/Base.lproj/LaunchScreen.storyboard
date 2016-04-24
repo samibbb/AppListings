@@ -14,14 +14,31 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="zjN-js-qsv">
+                                <rect key="frame" x="84" y="164" width="152" height="152"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="152" id="oEv-q5-lBz"/>
+                                    <constraint firstAttribute="height" constant="152" id="rpm-fb-U5V"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15294117647058825" green="0.37647058823529411" blue="0.30980392156862746" alpha="0.91500000000000004" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="zjN-js-qsv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KDt-ln-dj6"/>
+                            <constraint firstItem="zjN-js-qsv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="bdl-iM-3uQ"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Logo" width="252" height="252"/>
+    </resources>
 </document>

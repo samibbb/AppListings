@@ -65,8 +65,8 @@ typedef enum {
                                                        @"im:releaseDate.attributes.label":@"releaseDate"}];
 }
 
-- (BOOL)isEqual:(HFListing*)listing {
-    if (![listing isKindOfClass:self.class]) return NO;
+
+- (BOOL)isEqual:(HFListing*)listing {    
     return [self.appIdentifier isEqualToString:listing.appIdentifier];
 }
 
