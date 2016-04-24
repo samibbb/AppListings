@@ -103,7 +103,7 @@ static NSString * const kPersistedFavoritesKey = @"us/rss/topgrossingapplication
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     [self.sessionManager GET:kTopListingsEndpoint parameters:nil progress:nil
-                     success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {
+                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                          
@@ -118,6 +118,10 @@ static NSString * const kPersistedFavoritesKey = @"us/rss/topgrossingapplication
             } else {
                 [HFListingsManager handleFailure:jsonError];
             }
+        } else {
+            
+            NSString * invalidJsonErrMessage = [NSString stringWithFormat:@"Invalid JSON. Expected a dictionary, received a %@", NSStringFromClass([responseObject class])];
+            [HFListingsManager handleFailure:[NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:invalidJsonErrMessage}]];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
